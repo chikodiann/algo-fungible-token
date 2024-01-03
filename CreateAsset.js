@@ -42,17 +42,17 @@ async function deployToken() {
   // Sign the transaction
   const signedTxn = algosdk.signTransaction(txn, privateKeyUint8);
 
-  // Submit the transaction to the network
+  // Submit the transaction to the network...
   await algodClient.sendRawTransaction(signedTxn.blob).do();
 
-  // Wait for confirmation
+  // Wait for confirmation...
   const result = await algosdk.waitForConfirmation(algodClient, txn.txID().toString(), 3);
   
   console.log("Token deployed");
   const assetIndex = result['asset-index'];
   console.log(`Asset ID created: ${assetIndex}`);
 
-  // Display AlgoExplorer URL
+  // Display AlgoExplorer URL...
   const url = `https://testnet.algoexplorer.io/asset/${assetIndex}`;
   console.log(`Asset URL: ${url}`);
 
